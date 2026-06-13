@@ -14,6 +14,27 @@ public class PedidoController {
         this.processamentoPedidoService = processamentoPedidoService;
     }
 
+    @RestController
+    @RequestMapping("/api/v1/fornecedor")
+    public class FornecedorController {
+
+        private final ProcessamentoPedidoService processamentoPedidoService;
+
+        public FornecedorController(ProcessamentoPedidoService processamentoPedidoService) {
+            this.processamentoPedidoService = processamentoPedidoService;
+        }
+
+        @PostMapping("/entrada/{sku}")
+        public ResponseEntity<String> registrarEntrada(@PathVariable String sku, @RequestParam Integer quantidade) {
+            try {
+                processamentoPedidoService.registrarEntradaFornecedor(sku, quantidade);
+                return ResponseEntity.ok("Entrada de estoque registrada com sucesso para o SKU: " + sku);
+            } catch (Exception e) {
+                return ResponseEntity.badRequest().body("Erro ao registrar entrada: " + e.getMessage());
+            }
+        }
+    }
+
     @PostMapping("/processar-fila")
     public ResponseEntity<String> processarFila() {
         try {

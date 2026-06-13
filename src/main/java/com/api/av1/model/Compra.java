@@ -33,4 +33,7 @@ public class Compra {
         this.status = "Pendente";
         this.dataRegistro = LocalDateTime.now();
     }
+
+    public void setStatus(String atendida) {
+    }
 }

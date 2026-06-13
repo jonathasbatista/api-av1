@@ -83,4 +83,28 @@ public class ProcessamentoPedidoService {
         pedido.marcarAguardandoEstoque();
         pedidoRepository.save(pedido);
     }
+
+    @Transactional
+    public void registrarEntradaFornecedor(String sku, Integer quantidadeRecebida) {
+        Produto produto = produtoRepository.findById(sku)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado: " + sku));
+
+        produto.adicionarEstoque(quantidadeRecebida);
+        produtoRepository.save(produto);
+
+        Movimento movimento = new Movimento(
+                produto,
+                null,
+                "ENTRADA",
+                quantidadeRecebida,
+                produto.getEstoqueAtual()
+        );
+        movimentoRepository.save(movimento);
+
+        List<Compra> comprasPendentes = compraRepository.findByProdutoAndStatus(produto, "Pendente");
+        for (Compra compra : comprasPendentes) {
+            compra.setStatus("Atendida");
+            compraRepository.save(compra);
+        }
+    }
 }
