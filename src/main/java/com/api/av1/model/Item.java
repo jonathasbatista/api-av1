@@ -34,4 +34,17 @@ public class Item {
     public Integer getQuantidade() {
         return quantidade;
     }
+
+    public void setPedido(Pedido pedido) {
+    }
+
+    public void setProduto(Produto produto) {
+    }
+
+    public void setQuantidade(int i) {
+    }
+
+    public void setPrecoUnitario(BigDecimal bigDecimal) {
+
+    }
 }

@@ -5,7 +5,6 @@ import lombok.*;
 
 @Entity
 @Table(name = "clientes")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Cliente {
 
     @Id
@@ -20,4 +19,46 @@ public class Cliente {
 
     @Column(length = 20)
     private String telefone;
+
+    public Cliente() {
+    }
+
+    public Cliente(String cpf, String nomeComprador, String email, String telefone) {
+        this.cpf = cpf;
+        this.nomeComprador = nomeComprador;
+        this.email = email;
+        this.telefone = telefone;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getNomeComprador() {
+        return nomeComprador;
+    }
+
+    public void setNomeComprador(String nomeComprador) {
+        this.nomeComprador = nomeComprador;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 }

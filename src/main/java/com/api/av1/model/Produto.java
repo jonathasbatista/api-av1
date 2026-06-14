@@ -5,7 +5,6 @@ import lombok.*;
 
 @Entity
 @Table(name = "produtos")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Produto {
 
     @Id
@@ -17,6 +16,39 @@ public class Produto {
 
     @Column(name = "estoque_atual", columnDefinition = "INT DEFAULT 0")
     private Integer estoqueAtual = 0;
+
+    public Produto() {
+    }
+
+    public Produto(String sku, String nomeProduto, Integer estoqueAtual) {
+        this.sku = sku;
+        this.nomeProduto = nomeProduto;
+        this.estoqueAtual = estoqueAtual;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+
+    public Integer getEstoqueAtual() {
+        return estoqueAtual;
+    }
+
+    public void setEstoqueAtual(Integer estoqueAtual) {
+        this.estoqueAtual = estoqueAtual;
+    }
 
     public void adicionarEstoque(Integer quantidade) {
         this.estoqueAtual += quantidade;
@@ -31,17 +63,5 @@ public class Produto {
 
     public boolean temEstoqueSuficiente(Integer quantidadeNecessaria) {
         return this.estoqueAtual >= quantidadeNecessaria;
-    }
-
-    public String getSku() {
-        return sku;
-    }
-
-    public String getNomeProduto() {
-        return nomeProduto;
-    }
-
-    public Integer getEstoqueAtual() {
-        return estoqueAtual;
     }
 }

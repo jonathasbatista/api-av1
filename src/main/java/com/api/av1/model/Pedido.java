@@ -46,4 +46,24 @@ public class Pedido {
     public List<Item> getItens() {
         return itens;
     }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
+    }
 }
